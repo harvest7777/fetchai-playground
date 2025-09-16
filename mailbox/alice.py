@@ -34,6 +34,10 @@ async def ping_bob(ctx: Context):
     await ctx.send(BOB_ADDRESS, Message(content="Hello this is Alice"))
     ctx.logger.info("Sent message to Bob")
 
+@alice.on_message(model=Message)
+async def echo(ctx: Context, sender: str, msg: Message):
+    ctx.logger.info(f"Got response: {msg.content}")
+
 if __name__ == "__main__":
     alice.run()
  

@@ -17,5 +17,5 @@ COPY . .
 EXPOSE 8000
 
 # 7. Run your app
-CMD ["python", "bob.py"]
+CMD ["python", "bob-fastapi-hack.py"]
 
