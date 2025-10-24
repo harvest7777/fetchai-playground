@@ -16,10 +16,10 @@ servers somewhere which stays up all the time to hold your messages.
 """
 bob = Agent(name="bob", seed=os.getenv("BOB_SEED_PHRASE"), port=8000, mailbox=True)
 
-ALICE_IDENTITY = Identity.from_seed(seed=os.getenv("ALICE_SEED_PHRASE"), index=0)
+ALICE_IDENTITY = Identity.from_seed(seed=str(os.getenv("ALICE_SEED_PHRASE")), index=0)
 ALICE_ADDRESS = ALICE_IDENTITY.address
 
-fund_agent_if_low(bob.wallet.address())
+fund_agent_if_low(str(bob.wallet.address()))
 
 @bob.on_event("startup")
 async def introduce_agent(ctx: Context):
