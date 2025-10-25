@@ -2,28 +2,38 @@ from datetime import datetime
 from uuid import uuid4
 import os
 from dotenv import load_dotenv
-# from openai import OpenAI
-from uagents import Context, Protocol, Agent
+from uagents import Context, Protocol, Agent, Model
+
 from uagents_core.contrib.protocols.chat import (
     ChatAcknowledgement,
     ChatMessage,
-    StartSessionContent,
-    EndSessionContent,
-    AgentContent,
     TextContent,
     chat_protocol_spec,
 )
 load_dotenv()
 
 agent = Agent(
-    name="xiaoje",
+    name="heyyy aganet nent",
     seed=os.getenv("AGENT_SEED_PHRASE"),
-    port=8001,
+    port=8000,
     mailbox=True,
 )
+
+class Response(Model):
+    timestamp: str 
+    text: str
+    agent_address: str
+
+@agent.on_rest_get("/", Response)
+async def handle_get(ctx: Context):
+    return {
+        "timestamp": str(datetime.now()),
+        "text": "Hello from the GET handler!",
+        "agent_address": ctx.agent.address,
+    }
+
 protocol = Protocol(spec=chat_protocol_spec)
 
-# Chat protocol so you can message through asi one and agentverse
 @protocol.on_message(ChatMessage)
 async def handle_message(ctx: Context, sender: str, msg: ChatMessage):
     await ctx.send(
