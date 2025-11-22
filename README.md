@@ -1,2 +1,16 @@
 # fetchai-playground
-This is my playground environment to understand different parts of the tech stack. Open sourcing since they're notes and might help someone else. 
+
+This is a quick playground environment for Fetch.ai's uAgents framework.
+Each folder is a new project, so create a python venv with
+
+```bash
+python3 -m venv venv
+```
+
+(Or whatever your venv creation command is aliased to)
+Then
+
+```bash
+source venv/bin/activate
+pip install -r requirements.txt
+```

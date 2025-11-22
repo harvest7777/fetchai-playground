@@ -17,7 +17,7 @@ load_dotenv()
 
 agent = Agent(
     name="xiaoje",
-    seed=os.getenv("AGENT_SEED_PHRASE"),
+    seed="skladfjlkdkljfweoifjweofwiofsmdflk",
     port=8001,
     mailbox=True,
 )
@@ -48,6 +48,10 @@ async def handle_message(ctx: Context, sender: str, msg: ChatMessage):
 @protocol.on_message(ChatAcknowledgement)
 async def handle_ack(ctx: Context, sender: str, msg: ChatAcknowledgement):
     pass
+
+"""
+input: u see a room and are like turn this chair into a 3d mdoel
+"""
 
 # I believe you have to have this to register it to AgentVerse
 agent.include(protocol, publish_manifest=True)
