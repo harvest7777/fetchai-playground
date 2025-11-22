@@ -11,7 +11,7 @@ load_dotenv()
 
 """
 For mailbox agents, you do NOT define any end point for submission. 
-Fetch.ai likely handles this for you under the hood. They probably host their own
+Fetch.ai handles this for you under the hood. They host their own
 servers somewhere which stays up all the time to hold your messages.
 """
 bob = Agent(name="bob", seed=os.getenv("BOB_SEED_PHRASE"), port=8000, mailbox=True)
@@ -28,7 +28,7 @@ async def introduce_agent(ctx: Context):
 
 """
 FOR MAILBOX AGENTS: This will auto run for each mailbox message.
-It seems like unlike AWS SQS, you do NOT need to implement your own polling service.
+Unlike AWS SQS, you do NOT need to implement your own polling service.
 """
 @bob.on_message(model=Message)
 async def pong(ctx: Context, sender: str, msg: Message):

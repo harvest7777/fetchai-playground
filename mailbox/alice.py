@@ -10,13 +10,14 @@ from dotenv import load_dotenv
  
 load_dotenv()
 
-
 alice = Agent(name="alice", seed=os.getenv("ALICE_SEED_PHRASE"), port=8001, endpoint=["http://localhost:8001/submit"])
 
+# Lets get Bob's address so we can send him messages
 BOB_IDENTITY = Identity.from_seed(seed=str(os.getenv("BOB_SEED_PHRASE")), index=0)
 BOB_ADDRESS = BOB_IDENTITY.address
 
-# This is so Alice can regsiter for almanac contract. Almanac costs a little bit of money to register.
+# This is so Alice can regsiter for almanac contract. Almanac costs a little bit of money to register
+# Don't worry, we're using test funds
 fund_agent_if_low(str(alice.wallet.address()))
  
 @alice.on_event("startup")
